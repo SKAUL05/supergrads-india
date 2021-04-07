@@ -34,7 +34,7 @@ export default function VisitTracker() {
     setLoading(true);
 
     const request = async () => {
-      const response = await fetch('/api/count');
+      const response = await fetch('/count');
       const json = await response.json();
       count = json;
       setVisitCount(visitCount + Number(count));
