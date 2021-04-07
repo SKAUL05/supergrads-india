@@ -22,19 +22,29 @@ const useStyles = makeStyles({
   },
 });
 
+
 export default function VisitTracker() {
   const classes = useStyles();
   const [loading, setLoading] = React.useState(false);
   const [visitCount, setVisitCount] = React.useState(0);
+  let count = 0;
 
   React.useEffect(() => {
 
     setLoading(true);
 
+    const request = async () => {
+      const response = await fetch('/api/count');
+      const json = await response.json();
+      count = json;
+      setVisitCount(visitCount + Number(count));
+  }
+  
     //update visit count in database and fetch latest count
+    
     setTimeout(() => {
         setLoading(false);
-        setVisitCount(visitCount + 1); //update actual visit count from database
+        request()
     }, 2000);
   }, []);
 
