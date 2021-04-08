@@ -39,6 +39,11 @@
 			<version>5.0.0-M5</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+    		<groupId>com.microsoft.sqlserver</groupId>
+    		<artifactId>mssql-jdbc</artifactId>
+    		<version>6.1.0.jre8</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -101,6 +106,14 @@
                 </executions>
             </plugin>
 		</plugins>
+		<pluginManagement>
+			<plugins>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.2.0</version> 
+			</plugin>           
+			</plugins>
+  		</pluginManagement>   
 	</build>
 	<repositories>
 		<repository>
