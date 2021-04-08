@@ -35,12 +35,12 @@ jobs:
     # Run unit tests
     - name: Running Unit Tests
       run: |-
-      cd visitcount
-      mvn test
+        cd visitcount
+        mvn test
     
     # Build the jar file with maven
     - name: Build with Maven
       run: |-
-      cd visitcount
-      mvn -B package --file pom.xml -Dmaven.test.skip=true
+        cd visitcount
+        mvn -B package --file pom.xml -Dmaven.test.skip=true
       
