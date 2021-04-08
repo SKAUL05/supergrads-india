@@ -27,25 +27,24 @@ export default function VisitTracker() {
   const classes = useStyles();
   const [loading, setLoading] = React.useState(false);
   const [visitCount, setVisitCount] = React.useState(0);
-  // let count = 0;
+  let count = 0;
 
   React.useEffect(() => {
 
     setLoading(true);
 
-  //   const request = async () => {
-  //     const response = await fetch('/count');
-  //     const json = await response.json();
-  //     count = json;
-  //     setVisitCount(visitCount + Number(count));
-  // }
+    const request = async () => {
+      const response = await fetch('/count');
+      const json = await response.json();
+      count = json;
+      setVisitCount(visitCount + Number(count));
+  }
   
     //update visit count in database and fetch latest count
     
     setTimeout(() => {
         setLoading(false);
-        // request()
-        setVisitCount(visitCount+1);
+        request()
     }, 2000);
   }, []);
 

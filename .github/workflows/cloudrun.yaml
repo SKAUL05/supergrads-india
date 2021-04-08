@@ -11,9 +11,6 @@ jobs:
   setup-build-publish-deploy:
     name: Build and Deploy
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [15.x]
 
     steps:
     #Checkout the repository code
@@ -40,22 +37,4 @@ jobs:
     - name: Build with Maven
       run: |-
         cd visitcount
-        ./mvnw -B package --file pom.xml -Dmaven.test.skip=true
-    
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-     
-    - name: Node Build
-      run: |- 
-        cd ui
-        npm install
-        npm run build
-    
-    - name: Copy Build
-      run: |- 
-        pwd
-        cp /ui/build/. /visitcount/target/classes/public/
-        cd visitcount/target/classes/public
-        ls
+        ./mvnw -DskipTests package
