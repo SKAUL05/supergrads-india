@@ -16,6 +16,7 @@ jobs:
     #Checkout the repository code
     - name: Checkout
       uses: actions/checkout@v2
+
     
     #Cache the maven dependencies to .m2 directory
     # - name: Cache local Maven repository
@@ -31,6 +32,10 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
+    
+    - name: Maven Clean
+      run: |-
+        ./mvnw clean install
     
     
     # Build the jar file with maven
