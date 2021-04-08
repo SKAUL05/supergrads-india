@@ -10,7 +10,7 @@ on:
 jobs:
   setup-build-publish-deploy:
     name: Build and Deploy
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
     #Checkout the repository code
@@ -37,6 +37,7 @@ jobs:
       run: |-
         cd visitcount
         ./mvnw clean
+        git --version
     
     # Build the jar file with maven
     - name: Build with Maven
