@@ -63,8 +63,8 @@ jobs:
       run: |-
         cd visitcount
         gcloud components install beta
-        gcloud beta run services replace cloud-run.yaml  --platform=managed --region=europe-west1
-        gcloud run services add-iam-policy-binding spring-react-app --platform=managed --region=europe-west1 --member="allUsers" --role="roles/run.invoker"
+        gcloud beta run services replace spring-boot-run.yaml  --platform=managed --region=europe-west1
+        gcloud run services add-iam-policy-binding spring-boot-app --platform=managed --region=europe-west1 --member="allUsers" --role="roles/run.invoker"
 
     - name: Configure Docker
       run: gcloud auth configure-docker --quiet
@@ -72,8 +72,15 @@ jobs:
     - name: Build Docker image
       run: |-
         cd ui/
-        BACK_URL=$(gcloud run services describe spring-react-app --platform managed --region europe-west1 --format 'value(status.url)')
-        docker build --build-arg URL=$BACK_URL -t gcr.io/$GCP_PROJECT/front-end .
+        BACK_URL=$(gcloud run services describe react-app --platform managed --region europe-west1 --format 'value(status.url)')
+        docker build --build-arg URL=$BACK_URL -t gcr.io/$GCP_PROJECT/react-app .
           
     - name: Push Docker image
-      run: docker push gcr.io/$GCP_PROJECT/front-end
+      run: docker push gcr.io/$GCP_PROJECT/react-app
+
+    - name: Deploy to Cloud Run
+      run: |-
+        cd ui
+        gcloud components install beta
+        gcloud beta run services replace react-run.yaml  --platform=managed --region=europe-west1
+        gcloud run services add-iam-policy-binding react-app --platform=managed --region=europe-west1 --member="allUsers" --role="roles/run.invoker"
