@@ -37,7 +37,6 @@ jobs:
       run: |-
         cd visitcount
         ./mvnw clean
-        git --version
     
     # Build the jar file with maven
     - name: Build with Maven
