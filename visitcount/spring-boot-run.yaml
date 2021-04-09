@@ -15,7 +15,7 @@ spec:
       containerConcurrency: 80
       timeoutSeconds: 300
       containers:
-      - image: gcr.io/iconic-subject-277220/spring-boot-app:latest
+      - image: gcr.io/iconic-subject-277220/spring-boot-app
         ports:
         - containerPort: 8080
         resources:
