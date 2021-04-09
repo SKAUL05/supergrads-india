@@ -32,6 +32,8 @@ export default function VisitTracker() {
 
   React.useEffect(() => {
     setLoading(true);
+    console.log(process.env);
+
   
     setTimeout(() => {
         fetch(apiUrl)

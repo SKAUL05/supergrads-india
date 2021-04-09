@@ -1,5 +1,5 @@
 const prod = {
-     API_URL: "https://spring-react-app-byu3swvefa-ew.a.run.app"
+     API_URL: process.env.REACT_APP_API_URL || "http://localhost:8080"
 };
 const dev = {
      API_URL: "http://localhost:8080"
