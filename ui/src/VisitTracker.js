@@ -40,7 +40,7 @@ export default function VisitTracker() {
         headers: {'Access-Control-Allow-Origin':'*'}
       });
       const json = await response.json();
-      setVisitCount(visitCount + Number(json));
+      setVisitCount(Number(json));
   }
   
     //update visit count in database and fetch latest count
