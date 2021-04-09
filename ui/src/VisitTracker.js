@@ -4,6 +4,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import {config} from './constants';
 
 const useStyles = makeStyles({
   root: {
@@ -27,13 +28,17 @@ export default function VisitTracker() {
   const classes = useStyles();
   const [loading, setLoading] = React.useState(false);
   const [visitCount, setVisitCount] = React.useState(0);
+  console.log(config);
+  const COUNT_API = config['API_URL'] + '/count';
 
   React.useEffect(() => {
 
     setLoading(true);
 
     const request = async () => {
-      const response = await fetch('/count');
+      const response = await fetch(COUNT_API,{
+        headers: {'Access-Control-Allow-Origin':'*'}
+      });
       const json = await response.json();
       setVisitCount(visitCount + Number(json));
   }
@@ -44,7 +49,7 @@ export default function VisitTracker() {
         setLoading(false);
         request();
     }, 2000);
-  }, [visitCount]);
+  }, [visitCount, COUNT_API]);
 
   return (
     <Card className={classes.root}>
