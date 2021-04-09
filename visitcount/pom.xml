@@ -5,7 +5,11 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
+<<<<<<< HEAD
 		<version>2.2.4.RELEASE</version>
+=======
+		<version>2.3.1.RELEASE</version>
+>>>>>>> 9ab73871667ef0db2b8092908bd4b84dbc795cf7
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>dev.gcp</groupId>
@@ -56,6 +60,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+
 	</build>
 
 </project>

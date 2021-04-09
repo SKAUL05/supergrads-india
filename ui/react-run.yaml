@@ -1,0 +1,27 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: react-app
+  labels:
+    cloud.googleapis.com/location: europe-west1
+  annotations:
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/maxScale: '3'
+    spec:
+      serviceAccountName: SB-React-WebApp
+      containerConcurrency: 80
+      timeoutSeconds: 300
+      containers:
+      - image: gcr.io/iconic-subject-277220/react-app:latest
+        ports:
+        - containerPort: 3000
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 256Mi
+  traffic:
+    - percent: 100
+      latestRevision: true
