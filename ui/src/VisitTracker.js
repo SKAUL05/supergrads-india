@@ -28,28 +28,21 @@ export default function VisitTracker() {
   const classes = useStyles();
   const [loading, setLoading] = React.useState(false);
   const [visitCount, setVisitCount] = React.useState(0);
-  console.log(config);
-  const COUNT_API = config['API_URL'] + '/count';
+  const apiUrl = config['API_URL'] + '/count';
 
   React.useEffect(() => {
-
     setLoading(true);
-
-    const request = async () => {
-      const response = await fetch(COUNT_API,{
-        headers: {'Access-Control-Allow-Origin':'*'}
-      });
-      const json = await response.json();
-      setVisitCount(Number(json));
-  }
   
-    //update visit count in database and fetch latest count
-    
     setTimeout(() => {
-        setLoading(false);
-        request();
+        fetch(apiUrl)
+        .then((response) => response.json())
+        .then((data) => {
+          setVisitCount(Number(data));
+          setLoading(false);
+        });
     }, 2000);
-  }, [visitCount, COUNT_API]);
+
+  }, [apiUrl]);
 
   return (
     <Card className={classes.root}>

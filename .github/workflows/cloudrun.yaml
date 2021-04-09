@@ -39,10 +39,6 @@ jobs:
       with:
         java-version: 11
     
-    # - name: Maven Clean
-    #   run: |-
-    #     cd visitcount
-    #     ./mvnw clean
     
     # Build the jar file with maven
     - name: Build with Maven
@@ -69,3 +65,14 @@ jobs:
         gcloud components install beta
         gcloud beta run services replace cloud-run.yaml  --platform=managed --region=europe-west1
         gcloud run services add-iam-policy-binding spring-react-app --platform=managed --region=europe-west1 --member="allUsers" --role="roles/run.invoker"
+
+    - name: Configure Docker
+      run: gcloud auth configure-docker --quiet
+    
+    - name: Build Docker image
+      run: |-
+      cd ui/
+      docker build -t gcr.io/$GCP_PROJECT/front-end .
+        
+    - name: Push Docker image
+      run: docker push gcr.io/$GCP_PROJECT/front-end
