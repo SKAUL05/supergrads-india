@@ -65,5 +65,5 @@ jobs:
 
     - name: Deploy to Cloud Run
       run: |-
-        gcloud beta run services replace cloud-run.yaml --platform=managed --region=europe-west1
+        gcloud beta run --quiet services replace cloud-run.yaml --platform=managed --region=europe-west1
         gcloud run services add-iam-policy-binding gcp-cloudrun-back --platform=managed --region=europe-west1 --member="allUsers" --role="roles/run.invoker"
