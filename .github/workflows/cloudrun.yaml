@@ -60,5 +60,5 @@ jobs:
 
     - name: Deploy to GCR 
       run: |-
-      cd visitcount
-      ./mvnw compile com.google.cloud.tools:jib-maven-plugin:2.8.0:build -Dimage=gcr.io/$GCP_PROJECT/spring-react-app
+        cd visitcount
+        ./mvnw compile com.google.cloud.tools:jib-maven-plugin:2.8.0:build -Dimage=gcr.io/$GCP_PROJECT/spring-react-app
