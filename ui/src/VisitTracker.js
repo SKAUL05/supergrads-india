@@ -4,6 +4,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import {config} from './constants';
 
 const useStyles = makeStyles({
   root: {
@@ -22,31 +23,48 @@ const useStyles = makeStyles({
   },
 });
 
-
 export default function VisitTracker() {
   const classes = useStyles();
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
   const [visitCount, setVisitCount] = React.useState(0);
-  let count = 0;
 
-  React.useEffect(() => {
-
-    setLoading(true);
-
-    const request = async () => {
-      const response = await fetch('/count');
-      const json = await response.json();
-      count = json;
-      setVisitCount(visitCount + Number(count));
-  }
   
-    //update visit count in database and fetch latest count
+
+  React.useEffect( () => {
+   
+    const addMyVisit = async () => { 
+      
+       await fetch(config['API_URL'] + '/increment', {
+          headers: {'Access-Control-Allow-Origin':'*'},
+          method : 'post'
+        })
+        //.then(response => response.json())
+        //.then(json => console.log(json))    
+        .catch(err => console.log('Request Failed', err));
     
-    setTimeout(() => {
+    }
+
+      
+    const getVisitCount = async () => {
+        const response = await fetch(config['API_URL'] + '/count', {
+          headers: {'Access-Control-Allow-Origin':'*'}
+        });
+        const json = await response.json();
+        console.log("Refreshing")
         setLoading(false);
-        request()
-    }, 2000);
+        setVisitCount(Number(json));
+      }
+
+    
+    addMyVisit();   //update database adding my current visit to counter
+
+    const interval = setInterval(() => getVisitCount() , 5000); // fetch latest count every 5 seconds
+
+    return () => clearInterval(interval)
+
   }, []);
+
+
 
   return (
     <Card className={classes.root}>
