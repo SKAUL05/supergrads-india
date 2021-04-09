@@ -64,9 +64,5 @@ jobs:
         ./mvnw compile com.google.cloud.tools:jib-maven-plugin:2.8.0:build -Dimage=gcr.io/$GCP_PROJECT/spring-react-app
 
     - name: Deploy to Cloud Run
-      id: deploy
-      uses: google-github-actions/deploy-cloudrun@main
-      with:
-        service: spring-react-run
-        image: gcr.io/$GCP_PROJECT/spring-react-app:latest
-        credentials: ${{ secrets.SA_KEY }}
+      run: |-
+        gcloud run deploy spring-react-run --region=us-central1 --platform=managed --allow-unauthenticated --image=gcr.io/$GCP_PROJECT/spring-react-app
