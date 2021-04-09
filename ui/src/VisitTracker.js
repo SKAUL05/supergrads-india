@@ -42,9 +42,9 @@ export default function VisitTracker() {
     
     setTimeout(() => {
         setLoading(false);
-        request()
+        request();
     }, 2000);
-  }, []);
+  }, [visitCount]);
 
   return (
     <Card className={classes.root}>
