@@ -57,7 +57,7 @@ jobs:
     - name: Deploy to GCR 
       run: |-
         cd visitcount
-        ./mvnw compile com.google.cloud.tools:jib-maven-plugin:2.8.0:build -Dimage=gcr.io/$GCP_PROJECT/spring-react-app
+        ./mvnw compile com.google.cloud.tools:jib-maven-plugin:2.8.0:build -Dimage=gcr.io/$GCP_PROJECT/spring-boot-app
 
     - name: Deploy to Cloud Run
       run: |-
@@ -78,7 +78,7 @@ jobs:
     - name: Push Docker image
       run: docker push gcr.io/$GCP_PROJECT/react-app
 
-    - name: Deploy to Cloud Run
+    - name: Deploy React App
       run: |-
         cd ui
         gcloud components install beta
