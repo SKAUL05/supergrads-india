@@ -22,11 +22,11 @@ jobs:
       with:
         node-version: '14'
     
-    - name: NPM Install & Build
-      run: |-
-        cd ui/
-        npm install
-        npm run build
+    # - name: NPM Install & Build
+    #   run: |-
+    #     cd ui/
+    #     npm install
+    #     npm run build
     
     #Cache the maven dependencies to .m2 directory
     # - name: Cache local Maven repository
