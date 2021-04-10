@@ -62,7 +62,8 @@ jobs:
         username: _json_key
         password: ${{ secrets.SA_KEY }}
         registry: gcr.io
-        image_name: gcp-sb-training-app          
+        image_name: gcp-sb-training-app
+        dockerfile: visitcount/Dockerfile
 
 #    - name: Deploy to GCR 
 #      run: |-
