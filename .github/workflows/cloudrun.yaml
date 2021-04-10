@@ -55,11 +55,19 @@ jobs:
         export_default_credentials: true
 
         # Create a CloudSQL MySQL instance
+        
+     # Pull previously pushed stages(if any), Build the Docker image using cache and push it to registry
+    - uses: whoan/docker-build-with-cache-action@v5
+      with:
+        username: _json_key
+        password: ${{ secrets.SA_KEY }}
+        registry: gcr.io
+        image_name: gcp-sb-training-app          
 
-    - name: Deploy to GCR 
-      run: |-
-        cd visitcount
-        ./mvnw compile com.google.cloud.tools:jib-maven-plugin:2.8.0:build -Dimage=gcr.io/$GCP_PROJECT/spring-boot-app
+#    - name: Deploy to GCR 
+#      run: |-
+#        cd visitcount
+#        ./mvnw compile com.google.cloud.tools:jib-maven-plugin:2.8.0:build -Dimage=gcr.io/$GCP_PROJECT/spring-boot-app
         
 
  #   - name: Deploy to Cloud Run
