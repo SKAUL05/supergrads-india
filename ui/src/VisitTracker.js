@@ -50,7 +50,6 @@ export default function VisitTracker() {
           headers: {'Access-Control-Allow-Origin':'*'}
         });
         const json = await response.json();
-        console.log("Refreshing")
         setLoading(false);
         setVisitCount(Number(json));
       }
