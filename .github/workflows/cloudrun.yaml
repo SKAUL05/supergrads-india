@@ -44,7 +44,7 @@ jobs:
     - name: Build with Maven
       run: |-
         cd visitcount
-        ./mvnw -DskipTests package
+        mvn -B package --file pom.xml -Dmaven.test.skip=true
 
     # Setup gcloud CLI
     - name: Setup gcloud CLI
