@@ -79,7 +79,7 @@ jobs:
     - name: Build Docker image
       run: |-
         cd ui/
-        BACK_URL=$(gcloud run services describe spring-boot-app --platform managed --region europe-west1 --format 'value(status.url)')
+        BACK_URL=$(gcloud run services describe sb-test --platform managed --region us-central1 --format 'value(status.url)')
         docker build --build-arg URL=$BACK_URL -t gcr.io/$GCP_PROJECT/react-app .
          
     - name: Push Docker image
