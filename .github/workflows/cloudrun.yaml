@@ -62,7 +62,7 @@ jobs:
       run: |-
         cd visitcount
         sed -i "s/SA_NAME/$SA_NAME/g" spring-boot-run.yaml
-        sed -i "s/GCP_PROJECT_ID/$GCP_PROJECT_ID/g" spring-boot-run.yaml
+        sed -i "s/GCP_PROJECT/$GCP_PROJECT/g" spring-boot-run.yaml
         gcloud beta run services replace spring-boot-run.yaml  --platform=managed --region=europe-west1
         gcloud run services add-iam-policy-binding spring-boot-app --platform=managed --region=europe-west1 --member="allUsers" --role="roles/run.invoker"
 
@@ -80,6 +80,6 @@ jobs:
       run: |-
         cd ui
         sed -i "s/SA_NAME/$SA_NAME/g" react-run.yaml
-        sed -i "s/GCP_PROJECT_ID/$GCP_PROJECT_ID/g" react-run.yaml
+        sed -i "s/GCP_PROJECT/$GCP_PROJECT/g" react-run.yaml
         gcloud beta run services replace react-run.yaml  --platform=managed --region=europe-west1
         gcloud run services add-iam-policy-binding react-app --platform=managed --region=europe-west1 --member="allUsers" --role="roles/run.invoker"
