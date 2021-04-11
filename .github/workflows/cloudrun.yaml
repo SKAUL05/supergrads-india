@@ -57,7 +57,8 @@ jobs:
         # Create a CloudSQL MySQL instance
         
      # Pull previously pushed stages(if any), Build the Docker image using cache and push it to registry
-    - uses: whoan/docker-build-with-cache-action@v5
+    - name: Build docker image with cache
+      uses: whoan/docker-build-with-cache-action@v5
       with:
         username: _json_key
         password: ${{ secrets.SA_KEY }}
@@ -65,7 +66,7 @@ jobs:
         image_name: gcp-sb-training-app
         dockerfile: visitcount/Dockerfile
 
-   - name: Deploy to Cloud Run
+    - name: Deploy to Cloud Run
      run: |-
        cd visitcount
        gcloud components install beta
@@ -75,7 +76,7 @@ jobs:
     - name: Configure Docker
       run: gcloud auth configure-docker --quiet
     
-   - name: Build Docker image
+    - name: Build Docker image
       run: |-
         cd ui/
         BACK_URL=$(gcloud run services describe spring-boot-app --platform managed --region europe-west1 --format 'value(status.url)')
@@ -88,5 +89,5 @@ jobs:
       run: |-
        cd ui
         gcloud components install beta
-       gcloud beta run services replace react-run.yaml  --platform=managed --region=europe-west1
+        gcloud beta run services replace react-run.yaml  --platform=managed --region=europe-west1
         gcloud run services add-iam-policy-binding react-app --platform=managed --region=europe-west1 --member="allUsers" --role="roles/run.invoker"
