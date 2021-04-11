@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: springboot-app
   labels:
-    cloud.googleapis.com/location: us-central1
+    cloud.googleapis.com/location: europe-west1
   annotations:
 spec:
   template:
@@ -20,7 +20,7 @@ spec:
         - containerPort: 8085
         env:
         - name: INSTANCE_CONNECTION
-          value: iconic-subject-277220:us-central1:training-instance-2021
+          value: iconic-subject-277220:europe-west1:training-instance-2021
         - name: DATABASE_NAME
           value: test
         - name: DB_USER
