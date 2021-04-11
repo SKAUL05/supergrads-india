@@ -61,6 +61,7 @@ jobs:
 
     # Create a CloudSQL MySQL instance and a database
     - name: Create Cloud SQL instance
+      continue-on-error: true
       run: |- 
        gcloud sql instances create $CLOUDSQL_INSTANCE_NAME  --database-version=MYSQL_5_7 --tier=db-n1-standard-1  --region=europe-west1 --root-password=1234!
        gcloud sql databases create $DATABASE_NAME --instance=$CLOUDSQL_INSTANCE_NAME

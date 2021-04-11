@@ -24,7 +24,7 @@ spec:
         - name: DATABASE_NAME
           value: training-db
         - name: DB_USER
-          value: root
+          value: ayu
         - name: DB_PASSWORD
           value: 1234!
         resources:
