@@ -9,7 +9,10 @@ on:
 env:
   BACKEND_SERVICE_NAME: springboot-app
   FRONTEND_SERVICE_NAME: react-app  
+  CLOUDSQL_INSTANCE_NAME: training-instance
+  DATABASE_NAME: training-db
   GCP_PROJECT: ${{ secrets.GCP_PROJECT_ID }}
+  
 
 jobs:
   setup-build-publish-deploy:
@@ -56,7 +59,11 @@ jobs:
         project_id: ${{ secrets.GCP_PROJECT_ID }}
         export_default_credentials: true
 
-        # Create a CloudSQL MySQL instance
+    # Create a CloudSQL MySQL instance and a database
+    - name: Configure Docker
+      run: |- 
+       gcloud sql instances create training-instance  --database-version=MYSQL_5_7 --tier=db-n1-standard-1  --region=europe-west1 --root-password=1234!
+       gcloud sql databases create training-db --instance=training-instance
         
      # Pull previously pushed stages(if any), Build the Docker image using cache and push it to registry
     - name: Build docker image with cache
@@ -73,6 +80,7 @@ jobs:
        cd visitcount
        gcloud components install beta
        gcloud beta run services replace spring-boot-run.yaml  --platform=managed --region=europe-west1
+       gcloud run services update $BACKEND_SERVICE_NAME --set-cloudsql-instances=$CLOUDSQL_INSTANCE_NAME
        gcloud run services add-iam-policy-binding $BACKEND_SERVICE_NAME --platform=managed --region=europe-west1 --member="allUsers" --role="roles/run.invoker"
  
     - name: Configure Docker

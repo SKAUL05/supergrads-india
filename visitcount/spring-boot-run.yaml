@@ -22,9 +22,9 @@ spec:
         - name: INSTANCE_CONNECTION
           value: iconic-subject-277220:us-central1:ss-123
         - name: DATABASE_NAME
-          value: training
+          value: training-db
         - name: DB_USER
-          value: ayu
+          value: root
         - name: DB_PASSWORD
           value: 1234!
         resources:
