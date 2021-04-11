@@ -67,7 +67,7 @@ jobs:
         dockerfile: visitcount/Dockerfile
 
     - name: Deploy to Cloud Run
-     run: |-
+      run: |-
        cd visitcount
        gcloud components install beta
        gcloud beta run services replace spring-boot-run.yaml  --platform=managed --region=us-central1
