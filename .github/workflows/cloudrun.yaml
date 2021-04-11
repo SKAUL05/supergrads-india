@@ -71,7 +71,7 @@ jobs:
        cd visitcount
        gcloud components install beta
        gcloud beta run services replace spring-boot-run.yaml  --platform=managed --region=us-central1
-       gcloud run services add-iam-policy-binding spring-boot-app --platform=managed --region=us-central1 --member="allUsers" --role="roles/run.invoker"
+       gcloud run services add-iam-policy-binding sb-test --platform=managed --region=us-central1 --member="allUsers" --role="roles/run.invoker"
  
     - name: Configure Docker
       run: gcloud auth configure-docker --quiet
