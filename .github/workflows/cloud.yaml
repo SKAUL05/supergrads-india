@@ -70,6 +70,10 @@ jobs:
         cd visitcount
         sed -i "s/SA_NAME/$SA_NAME/g" spring-boot-run.yaml
         sed -i "s/GCP_PROJECT/$GCP_PROJECT/g" spring-boot-run.yaml
+        sed -i "s/INSTANCE_CONNECTION/${{ secrets.CONNECTION }}/g" spring-boot-run.yaml
+        sed -i "s/DATABASE_NAME/${{ secrets.DATABASE_NAME }}/g" spring-boot-run.yaml
+        sed -i "s/DB_USER/${{ secrets.DB_USER }}/g" spring-boot-run.yaml
+        sed -i "s/DB_PASSWORD/${{ secrets.DB_PASSWORD }}/g" spring-boot-run.yaml
         gcloud beta run services replace spring-boot-run.yaml  --platform=managed --region=europe-west1 
         gcloud run services add-iam-policy-binding $BACKEND_SERVICE_NAME --platform=managed --region=europe-west1 --member="allUsers" --role="roles/run.invoker"
 
