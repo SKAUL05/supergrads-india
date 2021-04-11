@@ -1,9 +1,9 @@
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
-  name: spring-boot-app
+  name: springboot-app
   labels:
-    cloud.googleapis.com/location: europe-west1
+    cloud.googleapis.com/location: us-central1
   annotations:
 spec:
   template:
@@ -11,17 +11,17 @@ spec:
       annotations:
         autoscaling.knative.dev/maxScale: '3'
     spec:
-      serviceAccountName: SA_NAME
       containerConcurrency: 80
-      timeoutSeconds: 300
+      timeoutSeconds: 600
+      serviceAccountName: SA_NAME
       containers:
       - image: gcr.io/GCP_PROJECT/spring-boot-app
         ports:
-        - containerPort: 8080
+        - containerPort: 8085
         resources:
           limits:
-            cpu: 1000m
-            memory: 256Mi
+            cpu: 2000m
+            memory: 2048Mi
   traffic:
-    - percent: 100
-      latestRevision: true
+  - percent: 100
+    latestRevision: true

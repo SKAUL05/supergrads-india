@@ -4,7 +4,6 @@ WORKDIR /app
 COPY . ./
 ARG URL
 ENV REACT_APP_API_URL=$URL
-RUN echo "$REACT_APP_API_URL"
 RUN npm install
 RUN npm run build
 
