@@ -9,7 +9,7 @@ on:
 env:
   BACKEND_SERVICE_NAME: springboot-app
   FRONTEND_SERVICE_NAME: react-app  
-  CLOUDSQL_INSTANCE_NAME: training-instance
+  CLOUDSQL_INSTANCE_NAME: training-instance-2021
   DATABASE_NAME: training-db
   GCP_PROJECT: ${{ secrets.GCP_PROJECT_ID }}
   
@@ -60,10 +60,10 @@ jobs:
         export_default_credentials: true
 
     # Create a CloudSQL MySQL instance and a database
-    - name: Configure Docker
+    - name: Create Cloud SQL instance
       run: |- 
-       gcloud sql instances create training-instance  --database-version=MYSQL_5_7 --tier=db-n1-standard-1  --region=europe-west1 --root-password=1234!
-       gcloud sql databases create training-db --instance=training-instance
+       gcloud sql instances create $CLOUDSQL_INSTANCE_NAME  --database-version=MYSQL_5_7 --tier=db-n1-standard-1  --region=europe-west1 --root-password=1234!
+       gcloud sql databases create $DATABASE_NAME --instance=$CLOUDSQL_INSTANCE_NAME
         
      # Pull previously pushed stages(if any), Build the Docker image using cache and push it to registry
     - name: Build docker image with cache
