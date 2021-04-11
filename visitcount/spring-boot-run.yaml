@@ -20,7 +20,7 @@ spec:
         - containerPort: 8085
         env:
         - name: INSTANCE_CONNECTION
-          value: iconic-subject-277220:us-central1:ss-123
+          value: iconic-subject-277220:us-central1:training-instance-2021
         - name: DATABASE_NAME
           value: test
         - name: DB_USER
