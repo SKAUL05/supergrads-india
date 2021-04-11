@@ -20,13 +20,13 @@ spec:
         - containerPort: 8085
         env:
         - name: INSTANCE_CONNECTION
-          value: CONNECTION
+          value: DATABASE_CONNECTION
         - name: DATABASE_NAME
-          value: NAME
+          value: DB_NAME
         - name: DB_USER
-          value: USER
+          value: USERNAME
         - name: DB_PASSWORD
-          value: PASSWORD
+          value: PASS_DB
         resources:
           limits:
             cpu: 2000m
