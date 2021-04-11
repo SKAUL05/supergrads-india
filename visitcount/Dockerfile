@@ -8,5 +8,6 @@ ARG USER
 ENV DB_USER=$USER
 ARG PASS
 ENV DB_PASSWORD=$PASS
-ADD visitcount/target/*.jar app.jar
+RUN echo "$DATABASE_NAME"
+ADD target/*.jar app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
