@@ -1,9 +1,9 @@
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
-  name: spring-boot-app
+  name: sb-test
   labels:
-    cloud.googleapis.com/location: europe-west1
+    cloud.googleapis.com/location: us-central1
   annotations:
 spec:
   template:
@@ -11,17 +11,26 @@ spec:
       annotations:
         autoscaling.knative.dev/maxScale: '3'
     spec:
-      serviceAccountName: SB-React-WebApp
       containerConcurrency: 80
-      timeoutSeconds: 300
+      timeoutSeconds: 600
+      serviceAccountName: SB-React-WebApp
       containers:
-      - image: gcr.io/iconic-subject-277220/spring-boot-app
+      - image: gcr.io/iconic-subject-277220/gcp-sb-training-app
         ports:
         - containerPort: 8080
+        env:
+        - name: INSTANCE_CONNECTION
+          value: iconic-subject-277220:us-central1:ss-123
+        - name: DATABASE_NAME
+          value: training
+        - name: DB_USER
+          value: ayu
+        - name: DB_PASSWORD
+          value: 1234!
         resources:
           limits:
-            cpu: 1000m
-            memory: 256Mi
+            cpu: 2000m
+            memory: 2048Mi
   traffic:
-    - percent: 100
-      latestRevision: true
+  - percent: 100
+    latestRevision: true
