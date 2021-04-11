@@ -11,11 +11,11 @@ spec:
       annotations:
         autoscaling.knative.dev/maxScale: '3'
     spec:
-      serviceAccountName: SB-React-WebApp
+      serviceAccountName: SA_NAME
       containerConcurrency: 80
       timeoutSeconds: 300
       containers:
-      - image: gcr.io/iconic-subject-277220/spring-boot-app
+      - image: gcr.io/GCP_PROJECT_ID/spring-boot-app
         ports:
         - containerPort: 8080
         resources:

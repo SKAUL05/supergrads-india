@@ -8,6 +8,7 @@ on:
 
 env:
   GCP_PROJECT: ${{ secrets.GCP_PROJECT_ID }}
+  SA_NAME: SB-React-WebApp
 
 jobs:
   setup-build-publish-deploy:
@@ -38,13 +39,6 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
-    
-    
-    # Build the jar file with maven
-    - name: Build with Maven
-      run: |-
-        cd visitcount
-        ./mvnw -DskipTests package
 
     # Setup gcloud CLI
     - name: Setup gcloud CLI
@@ -54,7 +48,12 @@ jobs:
         project_id: ${{ secrets.GCP_PROJECT_ID }}
         export_default_credentials: true
 
-    - name: Deploy to GCR 
+    - name: Configure Docker & Install Beta
+      run: |-
+        gcloud auth configure-docker --quiet
+        gcloud components install beta
+
+    - name: Build and Deploy to GCR 
       run: |-
         cd visitcount
         ./mvnw compile com.google.cloud.tools:jib-maven-plugin:2.8.0:build -Dimage=gcr.io/$GCP_PROJECT/spring-boot-app
@@ -62,12 +61,11 @@ jobs:
     - name: Deploy to Cloud Run
       run: |-
         cd visitcount
-        gcloud components install beta
+        sed -i "s/SA_NAME/$SA_NAME/g" spring-boot-run.yaml
+        sed -i "s/GCP_PROJECT_ID/$GCP_PROJECT_ID/g" spring-boot-run.yaml
         gcloud beta run services replace spring-boot-run.yaml  --platform=managed --region=europe-west1
         gcloud run services add-iam-policy-binding spring-boot-app --platform=managed --region=europe-west1 --member="allUsers" --role="roles/run.invoker"
 
-    - name: Configure Docker
-      run: gcloud auth configure-docker --quiet
     
     - name: Build Docker image
       run: |-
@@ -81,6 +79,7 @@ jobs:
     - name: Deploy React App
       run: |-
         cd ui
-        gcloud components install beta
+        sed -i "s/SA_NAME/$SA_NAME/g" react-run.yaml
+        sed -i "s/GCP_PROJECT_ID/$GCP_PROJECT_ID/g" react-run.yaml
         gcloud beta run services replace react-run.yaml  --platform=managed --region=europe-west1
         gcloud run services add-iam-policy-binding react-app --platform=managed --region=europe-west1 --member="allUsers" --role="roles/run.invoker"
