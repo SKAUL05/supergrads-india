@@ -81,7 +81,7 @@ jobs:
        cd visitcount
        gcloud components install beta
        gcloud beta run services replace spring-boot-run.yaml  --platform=managed --region=europe-west1
-       gcloud run services update $BACKEND_SERVICE_NAME --set-cloudsql-instances=$CLOUDSQL_INSTANCE_NAME
+       gcloud run services update $BACKEND_SERVICE_NAME --set-cloudsql-instances=$CLOUDSQL_INSTANCE_NAME --platform=managed --region=europe-west1
        gcloud run services add-iam-policy-binding $BACKEND_SERVICE_NAME --platform=managed --region=europe-west1 --member="allUsers" --role="roles/run.invoker"
  
     - name: Configure Docker
