@@ -7,6 +7,8 @@ on:
   workflow_dispatch:
 
 env:
+  BACKEND_SERVICE_NAME: springboot-app
+  FRONTEND_SERVICE_NAME: react-app  
   GCP_PROJECT: ${{ secrets.GCP_PROJECT_ID }}
 
 jobs:
@@ -70,8 +72,8 @@ jobs:
       run: |-
        cd visitcount
        gcloud components install beta
-       gcloud beta run services replace spring-boot-run.yaml  --platform=managed --region=us-central1
-       gcloud run services add-iam-policy-binding sb-test --platform=managed --region=us-central1 --member="allUsers" --role="roles/run.invoker"
+       gcloud beta run services replace spring-boot-run.yaml  --platform=managed --region=europe-west1
+       gcloud run services add-iam-policy-binding $BACKEND_SERVICE_NAME --platform=managed --region=europe-west1 --member="allUsers" --role="roles/run.invoker"
  
     - name: Configure Docker
       run: gcloud auth configure-docker --quiet
@@ -79,7 +81,7 @@ jobs:
     - name: Build Docker image
       run: |-
         cd ui/
-        BACK_URL=$(gcloud run services describe sb-test --platform managed --region us-central1 --format 'value(status.url)')
+        BACK_URL=$(gcloud run services describe $BACKEND_SERVICE_NAME --platform managed --region europe-west1 --format 'value(status.url)')
         docker build --build-arg URL=$BACK_URL -t gcr.io/$GCP_PROJECT/react-app .
          
     - name: Push Docker image
@@ -90,4 +92,4 @@ jobs:
        cd ui
         gcloud components install beta
         gcloud beta run services replace react-run.yaml  --platform=managed --region=europe-west1
-        gcloud run services add-iam-policy-binding react-app --platform=managed --region=europe-west1 --member="allUsers" --role="roles/run.invoker"
+        gcloud run services add-iam-policy-binding $FRONTEND_SERVICE_NAME --platform=managed --region=europe-west1 --member="allUsers" --role="roles/run.invoker"

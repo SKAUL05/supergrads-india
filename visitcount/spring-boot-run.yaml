@@ -1,7 +1,7 @@
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
-  name: sb-test
+  name: springboot-app
   labels:
     cloud.googleapis.com/location: us-central1
   annotations:
@@ -17,7 +17,7 @@ spec:
       containers:
       - image: gcr.io/iconic-subject-277220/gcp-sb-training-app
         ports:
-        - containerPort: 8080
+        - containerPort: 8085
         env:
         - name: INSTANCE_CONNECTION
           value: iconic-subject-277220:us-central1:ss-123
