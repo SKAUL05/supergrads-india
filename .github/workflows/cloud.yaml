@@ -11,6 +11,11 @@ env:
   FRONTEND_SERVICE_NAME: react-app  
   GCP_PROJECT: ${{ secrets.GCP_PROJECT_ID }}
   SA_NAME: SB-React-WebApp
+  INSTANCE: ${{ secrets.CONNECTION }}
+  DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+  DB_USER: ${{ secrets.DB_USER }}
+  DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+  CONN: "${{ secrets.GCP_PROJECT_ID }}:europe-west1:${{ secrets.CONNECTION }}" 
 
 jobs:
   build-deploy:
@@ -66,15 +71,21 @@ jobs:
         image_name: gcp-sb-training-app
         dockerfile: visitcount/Dockerfile
 
+    - name: Setup Cloud SQL
+      run: |- 
+       gcloud sql instances create $INSTANCE  --database-version=MYSQL_5_7 --tier=db-n1-standard-1  --region=europe-west1 --root-password=$DB_PASSWORD
+       gcloud sql databases create $DATABASE_NAME --instance=$INSTANCE
+       gcloud sql users create $DB_USER --instance=$INSTANCE --password=$DB_PASSWORD
+
     - name: Deploy Spring Boot to Cloud Run
       run: |-
         cd visitcount
         sed -i "s/SA_NAME/$SA_NAME/g" spring-boot-run.yaml
         sed -i "s/GCP_PROJECT/$GCP_PROJECT/g" spring-boot-run.yaml
-        sed -i "s/DATABASE_CONNECTION/${{ secrets.CONNECTION }}/g" spring-boot-run.yaml
-        sed -i "s/DB_NAME/${{ secrets.DATABASE_NAME }}/g" spring-boot-run.yaml
-        sed -i "s/USERNAME/${{ secrets.DB_USER }}/g" spring-boot-run.yaml
-        sed -i "s/PASS_DB/${{ secrets.DB_PASSWORD }}/g" spring-boot-run.yaml
+        sed -i "s/DATABASE_CONNECTION/$CONN/g" spring-boot-run.yaml
+        sed -i "s/DB_NAME/$DATABASE_NAME/g" spring-boot-run.yaml
+        sed -i "s/USERNAME/$DB_USER/g" spring-boot-run.yaml
+        sed -i "s/PASS_DB/$DB_PASSWORD/g" spring-boot-run.yaml
         gcloud beta run services replace spring-boot-run.yaml  --platform=managed --region=europe-west1 
         gcloud run services add-iam-policy-binding $BACKEND_SERVICE_NAME --platform=managed --region=europe-west1 --member="allUsers" --role="roles/run.invoker"
 
