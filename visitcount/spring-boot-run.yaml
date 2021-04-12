@@ -15,7 +15,7 @@ spec:
       timeoutSeconds: 600
       serviceAccountName: SA_NAME
       containers:
-      - image: gcr.io/GCP_PROJECT/spring-boot-app
+      - image: gcr.io/GCP_PROJECT/gcp-sb-training-app
         ports:
         - containerPort: 8085
         env:
