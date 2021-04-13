@@ -38,7 +38,6 @@ jobs:
       run: |-
         cd visitcount
         mvn -B package --file pom.xml -Dmaven.test.skip=true
-
     # Cache the maven dependencies to .m2 directory
     - name: Cache local Maven repository
       uses: actions/cache@v2
@@ -47,7 +46,6 @@ jobs:
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
         restore-keys: |
           ${{ runner.os }}-maven-
-
     # Setup gcloud CLI
     - name: Setup gcloud CLI
       uses: google-github-actions/setup-gcloud@master
@@ -56,11 +54,14 @@ jobs:
         project_id: ${{ secrets.GCP_PROJECT_ID }}
         export_default_credentials: true
 
+    # Enable required API's in the project
+    - name: Enable API's
+      run: |-
+        gcloud services enable logging.googleapis.com cloudresourcemanager.googleapis.com serviceusage.googleapis.com run.googleapis.com sqladmin.googleapis.com containerregistry.googleapis.com
     - name: Configure Docker and Install Beta
       run: |-
         gcloud auth configure-docker --quiet
         gcloud components install beta
-
     # Pull previously pushed stages(if any), Build the Docker image using cache and push it to registry
     - name: Build docker image with cache
       uses: whoan/docker-build-with-cache-action@v5
@@ -72,11 +73,11 @@ jobs:
         dockerfile: visitcount/Dockerfile
 
     - name: Setup Cloud SQL
+      continue-on-error: true
       run: |- 
        gcloud sql instances create $INSTANCE  --database-version=MYSQL_5_7 --tier=db-n1-standard-1  --region=europe-west1 --root-password=$DB_PASSWORD
        gcloud sql databases create $DATABASE_NAME --instance=$INSTANCE
        gcloud sql users create $DB_USER --instance=$INSTANCE --password=$DB_PASSWORD
-
     - name: Deploy Spring Boot to Cloud Run
       run: |-
         cd visitcount
@@ -86,9 +87,9 @@ jobs:
         sed -i "s/DB_NAME/$DATABASE_NAME/g" spring-boot-run.yaml
         sed -i "s/USERNAME/$DB_USER/g" spring-boot-run.yaml
         sed -i "s/PASS_DB/$DB_PASSWORD/g" spring-boot-run.yaml
-        gcloud beta run services replace spring-boot-run.yaml  --platform=managed --region=europe-west1 
+        gcloud beta run services replace spring-boot-run.yaml  --platform=managed --region=europe-west1
+        gcloud run services update $BACKEND_SERVICE_NAME --set-cloudsql-instances=$INSTANCE --platform=managed --region=europe-west1
         gcloud run services add-iam-policy-binding $BACKEND_SERVICE_NAME --platform=managed --region=europe-west1 --member="allUsers" --role="roles/run.invoker"
-
     - name: React App - Build Docker image
       run: |-
         cd ui/
