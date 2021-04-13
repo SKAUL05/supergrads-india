@@ -57,17 +57,15 @@
   - Keep **User Access Section** unchanged and click on **Done**
   - On Service Account Page click on Actions hamburger menu of Service Account you just created and Click on  Manage Keys
   
-![Service Account Manage Key](/assets/manage-key.jpg)
+![Service Account Manage Key](/assets/manage-key.JPG)
 
   - Click on **Add Key** and then **Create new key**
   
-![Service Account Create Key](/assets/create-new-key.jpg)  
+![Service Account Create Key](/assets/create-new-key.JPG)  
 
-
-  
   - Select **JSON** option and Click on **Create**. A JSON file will get downloaded on your local system, save it we will need it later*
 
-![Service Account JSON](/assets/create-json-key.jpg)
+![Service Account JSON](/assets/create-json-key.JPG)
 
 ## Creating Github Secrets
 * Fork this repository
