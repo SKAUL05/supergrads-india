@@ -1,4 +1,4 @@
-# `Deploy web-app` on Google Cloud Platform(GCP) using GitHub Action
+# `Deploy web-app` on GCP using GitHub Action
 
 Create a docker image of your spring boot based backend and react based front end and store it in Google Container Registry
 Deploy your, above created, docker images on Cloud Run in GCP
