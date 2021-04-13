@@ -5,22 +5,35 @@
 
 ## Table of Contents
 
-* [Setting up a GCP Project](#Setting-up-a-GCP-Project)
+* [Setting up a GCP account](#Setting-up-a-GCP-Account)
+* [Creating new GCP Project](#Creating-new-GCP-Project)
 * [Creating a Service Account in GCP Project](#Create-Service-Account)
 * [Creating Github Secrets](#Creating-github-secrets)
 * [Deploying the web-app](#Deploying-the-web-app)
 
 
-## Setting up a GCP Project
+## Setting up a GCP Account
 
-###You can skip this step if you already have a GCP Project
+**You can skip this step if you already have a GCP Project
 
 *  Go to [Google Cloud](https://cloud.google.com/) and click on **Get Started for FREE**.
 *  Login using your gmail account, choose your country, accept terms and conditions and click **Continue**.
 *  In the next step, fill your details, like account type, Name, Address, credit card details, tax information, etc. If you have old Gmail account and all the information is already there it would take it and you might not have to fill all the details.
 *  After filling all the details click on **Start my free trial**.
 *  Google will setup your cloud account and in few seconds your Google Cloud Platform account will be ready to start deploying applications on it. It will look like below:
-![Project Setup](/assets/gcp-project-setup-modified.jpg)
+![Project Setup](/assets/gcp-project-setups-modified.jpg)
+
+## Creating new GCP Project
+
+*  Go to [Manage Resources Page](https://console.cloud.google.com/cloud-resource-manager?_ga=2.16905723.313995043.1600681234-1805943322.1596519952) and click on **New Project**
+*  Fill in the Project Name and keep location as it is. You can also **Edit** Project ID according to availability. Once done click on **Create** and your New GCP Project will be created.
+![New Project](/assets/new-project-description-fied.jpg)
+
+*  After you have created your project. Go to Billing and click on **Link Billing Account**
+![Link Billing](/assets/billing-account-fied.jpg)
+
+*  Select Billing Account from dropdown menu and click on **Set Account**
+![Set Billing Account](/assets/set-billing-account-modified.jpg)
 
 ## Creating a Service Account in GCP Project
 
