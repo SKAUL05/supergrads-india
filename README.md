@@ -35,21 +35,24 @@
 *  Select Billing Account from dropdown menu and click on **Set Account**
 ![Set Billing Account](/assets/set-billing-account-modified.jpg)
 
-## Creating a Service Account in GCP Project
+## Creating a Service Account(SA) and SA Key in GCP Project
 
 * Go to **Navigation Menu(Top left Corner) > IAM & Admin > Service Accounts**
-*  - Click on **Create Service Account**
-*  - Under **Service Account Details** provide service account **name** and **description** of your choice and click on **Create**
+  - Click on **Create Service Account**
+  - Under **Service Account Details** provide service account **name** and **description** of your choice and click on **Create**
   ![Service Account Details](/assets/service-account-details-modified.jpg)
-*  - Under **Service Account Permissions** , add following roles one by one and click on **Continue**:
-	* Cloud Run Admin
-	* Cloud SQL Admin
-	* Container Registry Service Agent
+  
+  - Under **Service Account Permissions** , add following roles one by one and click on **Continue**:
+		* Cloud Run Admin
+		* Cloud SQL Admin
+		* Container Registry Service Agent
   ![Service Account Permissions](/assets/service-account-permissions-modified.JPG)
-*  - Keep **User Access Section** unchanged and click on **Done**
-*  - On Service Account Page click on Actions hamburger menu of Service Account you just created and Click on Create Key
+  
+  - Keep **User Access Section** unchanged and click on **Done**
+  - On Service Account Page click on Actions hamburger menu of Service Account you just created and Click on Create Key
   ![Service Account Create Key](/assets/service-account-create-key-modified.jpg)
-*  - Select **JSON** option and Click on **Create**. A JSON file will get downloaded on your local system, save it we will need it later*
+  
+  - Select **JSON** option and Click on **Create**. A JSON file will get downloaded on your local system, save it we will need it later*
   ![Service Account JSON](/assets/service-account-json-modified.jpg)
 
 ## Creating Github Secrets
