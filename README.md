@@ -1,7 +1,11 @@
 # `Deploy web-app` on GCP using GitHub Action
 
-1. Create a docker image of your spring boot based backend and react based front end and store it in Google Container Registry
-2. Deploy your, above created, docker images on Cloud Run in GCP
+## Keypoints
+
+1. This repo creates a docker image of spring boot based backend and react based front end and stores it in Google Container Registry which is later deployed on Cloud Run in GCP.
+2. The entire workflow of creating Docker images and deploying them to Cloud Run is automated via Github Actions. You can go through the workflow file in .github/workflows directory.
+3. Google Container Registry(GCR) is simply a place to store, manage and secure your docker container images. Further information about GCR can be found [here](https://cloud.google.com/container-registry)
+4. Cloud Run is a fully managed serverless platform to develop and deploy highly scalable containerized applications. You can explore further [here](https://cloud.google.com/run)
 
 ## Table of Contents
 
@@ -108,8 +112,9 @@
 * Once workflow is successful, head towards google cloud console and search cloud run on search bar, you can see the front end and back end services deployed there.
 
 ![Cloud Run Services](/assets/cloud-run-services.JPG)
- 
-* Click on react-app service and you will find the URL of deployed app. Click on URL to see the application. 
+
+* Click on springboot-app, your backend service, you can check the logs, see the metrics and other details of the service.
+* Click on react-app service, your frontend service and you will find the URL of deployed app. Click on URL to see the application. 
 
 ![React-App-Console](/assets/react-app-console.JPG)
  
