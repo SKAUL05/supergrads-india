@@ -45,7 +45,7 @@
 	* Cloud Run Admin
 	* Cloud SQL Admin
 	* Container Registry Service Agent
-  ![Service Account Permissions](/assets/service-account-permissions-modified.jpg)
+  ![Service Account Permissions](/assets/service-account-permissions-modified.JPG)
 *  - Keep **User Access Section** unchanged and click on **Done**
 *  - On Service Account Page click on Actions hamburger menu of Service Account you just created and Click on Create Key
   ![Service Account Create Key](/assets/service-account-create-key-modified.jpg)
@@ -55,7 +55,7 @@
 ## Creating Github Secrets
 * Fork this repository
 * Go to **Settings > Secrets** in your forked repository.
-* Click on **New Secret** and add Name as **GCP_PROJECT_ID** and value as Project ID of your GCP Project and click on Add Secret
+* Click on **New Repository Secret** and add Name as **GCP_PROJECT_ID** and value as Project ID of your GCP Project and click on Add Secret
   ![New Secret](/assets/secret-project.JPG)
 
 * Again click on New Secret and add Name as **SA_KEY** and value as contents of json file that you downloaded and click on Add Secret
