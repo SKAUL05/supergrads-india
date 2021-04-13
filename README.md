@@ -43,9 +43,10 @@
   ![Service Account Details](/assets/service-account-details-modified.jpg)
   
   - Under **Service Account Permissions** , add following roles one by one and click on **Continue**:
-		- Cloud Run Admin
-		- Cloud SQL Admin
-		- Container Registry Service Agent
+	- Cloud Run Admin
+	- Cloud SQL Admin
+	- Container Registry Service Agent
+
   ![Service Account Permissions](/assets/service-account-permissions-modified.jpg)
   
   - Keep **User Access Section** unchanged and click on **Done**
