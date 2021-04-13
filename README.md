@@ -8,7 +8,7 @@ Deploy your, above created, docker images on Cloud Run in GCP
 * [Setting up a GCP Project](#Setting-up-a-GCP-Project)
 * [Creating a Service Account in GCP Project](#Create-Service-Account)
 * [Creating Github Secrets](#Creating-github-secrets)
-* Deploying the web-app(Deploying-the-web-app)
+* [Deploying the web-app](#Deploying-the-web-app)
 
 
 ## Setting up a GCP Project
