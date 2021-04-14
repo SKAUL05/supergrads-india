@@ -18,7 +18,7 @@
 
 ## Running app locally
 
-### Prerequisites to run app
+### Prerequisites to run app locally
 * Git - for Version Control. You can download from [here](https://git-scm.com/downloads)
 * Java - to run backend service of the app. You can download JDK 8 from [here](https://www.oracle.com/in/java/technologies/javase/javase-jdk8-downloads.html)
 * Maven - to manage dependencies required in java code. You can find the maven archived file [here](https://maven.apache.org/download.cgi)
