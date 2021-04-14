@@ -15,6 +15,7 @@
 * [Creating a Service Account in GCP Project](#Create-Service-Account)
 * [Creating Github Secrets](#Creating-github-secrets)
 * [Deploying the web-app](#Deploying-the-web-app)
+* [Understanding Github Workflow](#Understanding-github-workflow)
 
 ## Running app locally
 
@@ -151,3 +152,8 @@ This will start the front end service and take you to the browser at the localho
  ##### Initial Request can take some time due to initialization
 
 ![Front-end](/assets/front-end.JPG)
+
+
+
+## Understanding Github Workflow
+![Workflow](/assets/supergrads.png)
