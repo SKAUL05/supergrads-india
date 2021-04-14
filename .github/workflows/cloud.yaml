@@ -4,7 +4,7 @@ name: Build and Deploy to Google Cloud Run
 on:
   push:
     branches:
-      - integration
+      - main
   workflow_dispatch:
 
 # Environment Variables available to the entire flow.
