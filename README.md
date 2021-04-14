@@ -26,6 +26,8 @@
 
 ##### You don't need to run this app locally to deploy it on to GCP.
 
+Download the above mentioned prerequisites and execute files(if required) and set the environment variables(like $JAVA_HOME for java). Installation of all these tools is well documented and easily available.
+
 Run the following commands in Git Bash once the above mentioned prerequisites are all set:
 ```bash
 git clone <Link-to-repo>
