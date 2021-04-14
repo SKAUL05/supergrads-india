@@ -79,7 +79,7 @@ jobs:
         image_name: gcp-sb-training-app
         dockerfile: visitcount/Dockerfile
 
-    # Spin up mysql instance, create database in it and a user to manage.
+    # Spin up mysql instance, create database in it and a user to manage. gcloud gives error in case instance alraedy exists, so continue-on-error is set as true
     - name: Setup Cloud SQL
       continue-on-error: true
       run: |- 
