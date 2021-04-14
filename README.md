@@ -24,7 +24,7 @@
 * Maven - to manage dependencies required in java code. You can find the maven archived file [here](https://maven.apache.org/download.cgi)
 * Node.JS and npm - to run react based frontend service of app. You can download from [here](https://nodejs.org/en/download/)
 
-##### You don't need to run app locally to deploy it to GCP.
+##### You don't need to run this app locally to deploy it on to GCP.
 
 Run the following commands in Git Bash once the above mentioned prerequisites are all set:
 ```bash
