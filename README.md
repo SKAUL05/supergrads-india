@@ -9,12 +9,36 @@
 
 ## Table of Contents
 
+* [Running app locally](#Running-app-locally)
 * [Setting up a GCP account](#Setting-up-a-GCP-Account)
 * [Creating new GCP Project](#Creating-new-GCP-Project)
 * [Creating a Service Account in GCP Project](#Create-Service-Account)
 * [Creating Github Secrets](#Creating-github-secrets)
 * [Deploying the web-app](#Deploying-the-web-app)
 
+## Running app locally
+
+### Prerequisites to run app
+* Git - for Version Control. You can download from [here](https://git-scm.com/downloads)
+* Java - to run backend service of the app. You can download JDK 8 from [here](https://www.oracle.com/in/java/technologies/javase/javase-jdk8-downloads.html)
+* Maven - to manage dependencies required in java code. You can find the maven archived file [here](https://maven.apache.org/download.cgi)
+* Node.JS and npm - to run react based frontend service of app. You can download from [here](https://nodejs.org/en/download/)
+
+Run the following commands in Git Bash once the above mentioned prerequisites are all set:
+```bash
+git clone <Link-to-repo>
+cd visitcount
+mvn spring-boot:run
+```
+
+This will start the back-end service. Again open another git bash terminal in the root of the repo you cloned in previous step and run following commands:
+
+```bash
+cd ui
+npm install
+npm run start
+```
+This will start the front end service and take you to the browser at the localhost:3000 where the front end of app is running.
 
 ## Setting up a GCP Account
 
