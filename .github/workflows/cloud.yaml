@@ -62,7 +62,7 @@ jobs:
     # Enable required API's in the project
     - name: Enable API's
       run: |-
-        gcloud services enable serviceusage.googleapis.com  logging.googleapis.com cloudresourcemanager.googleapis.com run.googleapis.com sqladmin.googleapis.com containerregistry.googleapis.com
+        gcloud services enable serviceusage.googleapis.com  logging.googleapis.com sql-component.googleapis.com cloudresourcemanager.googleapis.com run.googleapis.com sqladmin.googleapis.com containerregistry.googleapis.com
     
     # Register gcloud as Docker Credential Helper
     - name: Configure Docker and Install Beta
@@ -99,7 +99,7 @@ jobs:
         sed -i "s/USERNAME/$DB_USER/g" spring-boot-run.yaml
         sed -i "s/PASS_DB/$DB_PASSWORD/g" spring-boot-run.yaml
         gcloud beta run services replace spring-boot-run.yaml  --platform=managed --region=europe-west1
-        gcloud run services update $BACKEND_SERVICE_NAME --quiet --set-cloudsql-instances=$CONN --platform=managed --region=europe-west1
+        gcloud run services update $BACKEND_SERVICE_NAME --quiet --set-cloudsql-instances=$INSTANCE --platform=managed --region=europe-west1
         gcloud run services add-iam-policy-binding $BACKEND_SERVICE_NAME --platform=managed --region=europe-west1 --member="allUsers" --role="roles/run.invoker"
     
     # Build Docker Image of React Based front end
