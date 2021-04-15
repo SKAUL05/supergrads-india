@@ -93,6 +93,9 @@ This will start the front end service and take you to the browser at the localho
 	- Cloud Run Admin
 	- Cloud SQL Admin
 	- Container Registry Service Agent
+  - Service Account User
+  - Storage Admin
+  - Service Usage Admin
 
   ![Service Account Permissions](/assets/service-account-permissions-modified.jpg)
   
