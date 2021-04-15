@@ -31,11 +31,11 @@ Download the above mentioned prerequisites, execute files(if required) and set t
 
 Create a database using your mysql shell(downloaded and installed as a part of with MySQL). Below is a screenshot using windows operating system:
 
-![MYSQL SHELL](/assets/mysqlshell.jpg)
+![MYSQL SHELL](/assets/mysqlshell.JPG)
 
 Replace the database details in your directory where you have cloned code at visitcount\src\main\resources\application-dev.properties
 
-![Application Properties](/assets/app-properties.jpg)
+![Application Properties](/assets/app-properties.JPG)
 
 Run the following commands in Git Bash once the above mentioned prerequisites are all set:
 ```bash
