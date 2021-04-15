@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - main
+      - readme
   workflow_dispatch:
 
 # Environment Variables available to the entire flow.
@@ -61,7 +62,7 @@ jobs:
     # Enable required API's in the project
     - name: Enable API's
       run: |-
-        gcloud services enable logging.googleapis.com cloudresourcemanager.googleapis.com serviceusage.googleapis.com run.googleapis.com sqladmin.googleapis.com containerregistry.googleapis.com
+        gcloud services enable serviceusage.googleapis.com  logging.googleapis.com cloudresourcemanager.googleapis.com run.googleapis.com sqladmin.googleapis.com containerregistry.googleapis.com
     
     # Register gcloud as Docker Credential Helper
     - name: Configure Docker and Install Beta
