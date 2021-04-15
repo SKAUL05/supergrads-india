@@ -24,16 +24,25 @@
 * Java - to run backend service of the app. You can download JDK 8 from [here](https://www.oracle.com/in/java/technologies/javase/javase-jdk8-downloads.html)
 * Maven - to manage dependencies required in java code. You can find the maven archived file [here](https://maven.apache.org/download.cgi)
 * Node.JS and npm - to run react based frontend service of app. You can download from [here](https://nodejs.org/en/download/)
-
+* MySQL - to be used as database for application. You can download from [here](https://dev.mysql.com/downloads/)
 ##### You don't need to run this app locally to deploy it on to GCP.
 
-Download the above mentioned prerequisites and execute files(if required) and set the environment variables(like $JAVA_HOME for java). Installation of all these tools is well documented and easily available.
+Download the above mentioned prerequisites, execute files(if required) and set the environment variables(like $JAVA_HOME for java). Installation of all these tools is well documented and easily available.
+
+Create a database using your mysql shell(downloaded and installed as a part of with MySQL). Below is a screenshot using windows operating system:
+
+![MYSQL SHELL](/assets/mysqlshell.jpg)
+
+Replace the database details in your directory where you have cloned code at visitcount\src\main\resources\application-dev.properties
+
+![Application Properties](/assets/app-properties.jpg)
 
 Run the following commands in Git Bash once the above mentioned prerequisites are all set:
 ```bash
 git clone <Link-to-repo>
 cd visitcount
-mvn spring-boot:run
+mvn clean package -Pdev
+java -jar target/visitcount-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev
 ```
 
 This will start the back-end service. Again open another git bash terminal in the root of the repo you cloned in previous step and run following commands:
