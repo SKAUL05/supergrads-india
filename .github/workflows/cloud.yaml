@@ -5,7 +5,6 @@ on:
   push:
     branches:
       - main
-      - readme
   workflow_dispatch:
 
 # Environment Variables available to the entire flow.
