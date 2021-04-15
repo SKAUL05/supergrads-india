@@ -12,7 +12,7 @@
 * [Running app locally](#Running-app-locally)
 * [Setting up a GCP account](#Setting-up-a-GCP-Account)
 * [Creating new GCP Project](#Creating-new-GCP-Project)
-* [Creating a Service Account in GCP Project](#Create-a-Service-Account-in-GCP-Project)
+* [Creating a Service Account in GCP Project](#creating-a-service-accountsa-and-sa-key-in-gcp-project)
 * [Creating Github Secrets](#Creating-github-secrets)
 * [Deploying the web-app](#Deploying-the-web-app)
 * [Understanding Github Workflow](#Understanding-github-workflow)
@@ -184,4 +184,4 @@ This will start the front end service and take you to the browser at the localho
     Use Cloud Logging to look for application errors in stdout or stderr logs as described in the [Cloud Run logging page](https://cloud.google.com/run/docs/logging). You can also look for crashes captured in Error Reporting, as described in the [Cloud Run error reporting page](https://cloud.google.com/run/docs/error-reporting).  
 * _"ERROR: (gcloud.services.enable) User [######@#####.iam.gserviceaccount.com] does not have permission to access projects instance [***] (or it may not exist):"_
 
-  * This error is usually caused because of insufficient roles applied to Service Account. Checkout the roles in [Service Account section](#Create-a-Service-Account-in-GCP-Project) and see if you have applied all the roles
+  * This error is usually caused because of insufficient roles applied to Service Account. Checkout the roles in [Service Account section](#creating-a-service-accountsa-and-sa-key-in-gcp-project) and see if you have applied all the roles
