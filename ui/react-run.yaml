@@ -15,7 +15,7 @@ spec:
       containerConcurrency: 80
       timeoutSeconds: 300
       containers:
-      - image: gcr.io/GCP_PROJECT/react-app:latest
+      - image: gcr.io/GCP_PROJECT/react-app
         ports:
         - containerPort: 3000
         resources:
