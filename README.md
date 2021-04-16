@@ -43,8 +43,8 @@ Replace the database details in your directory where you have cloned code at vis
 Run the following commands in Git Bash once the above mentioned prerequisites are all set:
 
 ```bash
-git clone <Link-to-repo>
-cd visitcount
+git clone <Link-to-this-repo>
+cd services
 mvn clean package -Pdev
 java -jar target/visitcount-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev
 ```
