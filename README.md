@@ -36,7 +36,7 @@ Create a database using your mysql shell(downloaded and installed as a part of w
 
 ![MYSQL SHELL](/assets/mysqlshell.JPG)
 
-Clone the code to ypur local machine using command
+Clone the code to your local machine using command
 ```bash
 git clone https://github.com/git-dev-eng/supergrads-india.git
 ```
