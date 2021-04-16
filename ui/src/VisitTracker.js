@@ -41,7 +41,6 @@ export default function VisitTracker() {
         //.then(response => response.json())
         //.then(json => console.log(json))    
         .catch(err => console.log('Request Failed', err));
-        getVisitCount(); // Calling VisitCount Immediately after Incrementing
     }
 
       
